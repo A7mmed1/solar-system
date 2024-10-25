@@ -109,19 +109,9 @@ jobs:
     dev-deploy:
       if: contains(github.ref,'feature/')
       needs: docker
-      environment:
-         name: Development
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          continue-on-error: true
-          uses: actions/checkout@v4
+      uses: .github/workflows/reuse-deployment.yml
 
-
-        - name: install kubectl CLI
-          uses: azure/setup-kubectl@v3
-          with:
-            version: 'v1.26.0'
+     
       
         # - name: Fetch Kube cluster detail 
         #   run: |

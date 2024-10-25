@@ -1,0 +1,21 @@
+name: Deployment Reuseable workflow
+
+on: 
+    workflow_call: 
+
+
+jobs: 
+    reuse-deploy:
+        environment:
+        name: Development
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          continue-on-error: true
+          uses: actions/checkout@v4
+
+
+        - name: install kubectl CLI
+          uses: azure/setup-kubectl@v3
+          with:
+           version: 'v1.26.0'
